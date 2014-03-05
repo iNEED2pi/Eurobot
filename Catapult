@@ -1,0 +1,52 @@
+
+/* 
+Using a Servo Motor (SM-S2309S) 
+to make a "catapult" throw 6 so called spheres
+(read: tennisballs covered in velcro) at a Mammoth
+
+This code will make a servo: 
+Pick up one ball and throw it, go back to start position, pick up next ball x 6
+
+GROUND: Black wire: ground
+POWER: Red wire: 5 V
+SIGNAL: White wire: pin 9, we need to use PWM
+
+need to include the servo library
+*/ 
+
+#include <Servo.h>
+
+
+Servo Catapult; //Servo object will be used as a "catapult",  controls servo motor.
+
+
+int Position = (0); //Start Position
+
+void setup()
+ { 
+   Catapult.attach(9); // Servo signal wire is in PWM pin 9, attach servo to Catapult
+     } 
+ 
+ void loop()
+ { 
+   
+   for (Position = 0; Position < 100; Position +=6) // Catapult, go from 0-100 degrees, increment of 6 degrees
+    { Catapult.write(Position);                     // Catapult, go to Position
+    delay(10);                                      // Catapult, wait 10 ms to reach Position
+    } 
+    
+    for (Position =100; Position>=1; Position-=1)  // Catapult, go from 100-0 degrees, of decrease with -1 degree
+    { 
+      Catapult.write(Position);                    // Catapult, go to Position
+      delay(15);                                   // catapult, wait 
+    
+     } 
+     
+    // From start position, load next ball within 1 sec 
+    
+    if (Position <=(0));                          // Catapult, when at startpoint
+    {
+    delay(1000);                                   // wait 1sec, so ball can be loaded
+    } 
+    
+    } 
